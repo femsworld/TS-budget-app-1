@@ -1,4 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+
+type IncomeData = {
+    incomeSource: string;
+    amount: string;
+    date: string;
+  }
+
+  interface IncomeProps {
+    getTotalIncome: (income: number) => void
+}
 
 const useInput = () => {
     const [value, setValue] = useState("")
@@ -11,26 +21,30 @@ const useInput = () => {
     }
 }
 
-const Home = () => {
+const Income = (props: IncomeProps) => {
+    const [incomeList, setIncomeList] = useState<IncomeData[]>([]);
     const amountOfIncome = useInput()
     const incomeSource = useInput()
     const dateOfIncome = useInput()
-
     const printData = (e: React.FormEvent) => {
         e.preventDefault()
-        console.log("Income Source: ", incomeSource.value)
-        console.log("Amount: ", amountOfIncome.value)
-        console.log("Date: ", dateOfIncome.value)
+        const newIncome = {
+        incomeSource: incomeSource.value,
+        amount: amountOfIncome.value,
+        date: dateOfIncome.value
     }
-    /* const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value)
+    setIncomeList([...incomeList, newIncome])
+}
+
+useEffect(() => {
+    let totalIncome: number = 0
+    for(let item of incomeList) {
+        totalIncome+= Number(item.amount)
     }
-    const onPhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPhone(e.target.value)
-    }
-    const onNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUserName(e.target.value)
-    } */
+    props.getTotalIncome(totalIncome)
+  }, [incomeList]);
+
+
     return (
         <form onSubmit={printData}>
             <div>
@@ -40,7 +54,6 @@ const Home = () => {
                     name="incomeSource"
                     id="incomeSource"
                     placeholder="Salary"
-                    // readOnly
                     {...incomeSource} />
             </div>
             <div>
@@ -61,9 +74,19 @@ const Home = () => {
                     {...dateOfIncome} />
             </div>
             <button
-                type="submit">Send data</button>
+                type="submit">Add Income
+            </button>
+            <ul>
+                {incomeList.map((income, index) => (
+                <li key={index}>
+                    <div>Income Source: {income.incomeSource}</div>
+                    <div>Amount: {income.amount}EUR</div>
+                    <div>Date: {income.date}</div>
+                </li>
+            ))}
+            </ul>
         </form>
     )
 }
 
-export default Home
+export default Income
