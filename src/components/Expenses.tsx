@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 type ExpenseData = {
     expenseSource: string;
     amount: string;
     date: string;
   }
+
+  interface ExpenseProps {
+    getTotalExpense: (expense: number) => void
+}
 
 const useInput = () => {
     const [value, setValue] = useState("")
@@ -17,7 +21,7 @@ const useInput = () => {
     }
 }
 
-const Expenses = () => {
+const Expenses = (props: ExpenseProps) => {
     const [expenseList, setExpenseList] = useState<ExpenseData[]>([]);
     const amountOfExpenses = useInput()
     const expenseSource = useInput()
@@ -31,6 +35,15 @@ const Expenses = () => {
     }
     setExpenseList([...expenseList, newExpense])
 }
+
+useEffect(() => {
+    let totalExpense: number = 0
+    for(let item of expenseList) {
+        totalExpense+= Number(item.amount)
+    }
+    props.getTotalExpense(totalExpense)
+  }, [expenseList]);
+
   return (
     <form onSubmit={printData}>
             <div>

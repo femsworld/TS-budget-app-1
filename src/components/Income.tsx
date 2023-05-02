@@ -44,7 +44,6 @@ useEffect(() => {
     props.getTotalIncome(totalIncome)
   }, [incomeList]);
 
-
     return (
         <form onSubmit={printData}>
             <div>
