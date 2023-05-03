@@ -13,19 +13,16 @@ function App() {
   const [totalIncome, setTotalIncome] = useState(0)
   const getTotalIncome = (income: number) => {
     setTotalIncome(income)
-    // console.log(income)
   }
 
   const [totalExpense, setTotalExpense] = useState(0)
   const getTotalExpense = (expense: number) => {
     setTotalExpense(expense)
-    // console.log(expense)
   }
 
   const [totalTarget, setTotalTarget] = useState(0)
   const getTotalTarget = (target: number) => {
     setTotalTarget(target)
-    // console.log(expense)
   }
 
   return (

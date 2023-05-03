@@ -30,7 +30,6 @@ import React, { useState } from 'react'
             setTarget(parseInt(amountOfTarget.value));
         }
     }
-    console.log(amountOfTarget.value)
   return (
     <div>
         <form onSubmit={printData}>
