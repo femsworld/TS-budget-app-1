@@ -5,8 +5,8 @@ import './App.css';
 import Income from './components/Income';
 import Expenses from './components/Expenses';
 import CurrentBalance from './components/CurrentBalance';
-import SetTarget from './components/SetTargetAmount';
 import SetTargetAmount from './components/SetTargetAmount';
+import TransferToSaving from './components/TransferToSaving';
 
 function App() {
 
@@ -25,11 +25,17 @@ function App() {
     setTotalTarget(target)
   }
 
+  const [totalTransfer, setTotalTransfer] = useState(0)
+  const getTotalTransfer = (transfer: number) => {
+    setTotalTransfer(transfer)
+  }
+
   return (
     <div className="App">
       <Income getTotalIncome={getTotalIncome}/>
       <Expenses getTotalExpense={getTotalExpense}/>
       <SetTargetAmount getTotalTarget={getTotalTarget}/>
+      <TransferToSaving getTotalTransfer={getTotalTransfer}/>
       <div className='currentBalance'><CurrentBalance totalIncome={totalIncome} totalExpense={totalExpense}/></div>
     </div>
   );
