@@ -6,10 +6,10 @@ totalExpense: number
 }
 
 const CurrentBalance = (props: BalanceProps) => {
-    // console.log(props.totalIncome)
-    console.log(props.totalExpense)
+    const currentBalance = props.totalIncome - props.totalExpense
+    console.log(currentBalance)
   return (
-    <div>CurrentBalance</div>
+    <div>CurrentBalance: {currentBalance}EUR</div>
   )
 }
 

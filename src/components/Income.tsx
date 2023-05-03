@@ -47,7 +47,7 @@ useEffect(() => {
     return (
         <form onSubmit={printData}>
             <div>
-                <label htmlFor="incomeSource">Income Source</label>
+                <label htmlFor="incomeSource">Income Source</label> <br></br>
                 <input
                     type="text"
                     name="incomeSource"
@@ -56,7 +56,7 @@ useEffect(() => {
                     {...incomeSource} />
             </div>
             <div>
-                <label htmlFor="amountOfIncome">Amount of Income</label>
+                <label htmlFor="amountOfIncome">Amount of Income</label> <br></br>
                 <input
                     type="number"
                     name="amountOfIncome"
@@ -65,7 +65,7 @@ useEffect(() => {
                 />
             </div>
             <div>
-                <label htmlFor="dateOfIncome">Date of Income</label>
+                <label htmlFor="dateOfIncome">Date of Income</label> <br></br>
                 <input
                     type="date"
                     name="date"

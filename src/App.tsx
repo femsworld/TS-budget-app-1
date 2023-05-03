@@ -5,6 +5,7 @@ import './App.css';
 import Income from './components/Income';
 import Expenses from './components/Expenses';
 import CurrentBalance from './components/CurrentBalance';
+// import SetTarget from './components/SetTarget';
 
 function App() {
 
@@ -24,7 +25,8 @@ function App() {
     <div className="App">
       <Income getTotalIncome={getTotalIncome}/>
       <Expenses getTotalExpense={getTotalExpense}/>
-      <CurrentBalance totalIncome={totalIncome} totalExpense={totalExpense}/>
+      {/* <SetTarget/> */}
+      <div className='currentBalance'><CurrentBalance totalIncome={totalIncome} totalExpense={totalExpense}/></div>
     </div>
   );
 }
