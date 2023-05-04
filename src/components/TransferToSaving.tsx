@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { NumericLiteral } from 'typescript'
 
 interface TransferProps {
-    getTotalTransfer: (transfer: number) => void
+    totalTransferAmount: (transfer: number) => void
 }
 
 const useInput = () => {
@@ -16,6 +17,7 @@ const useInput = () => {
 }
 
 const TransferToSaving = (props: TransferProps) => {
+    const [transferList, setTransferList] = useState([]);
     const [transfer, setTransfer] = useState(0);
         const amountOfTransfer = useInput()
         const printData = (e: React.FormEvent) => {
@@ -23,27 +25,41 @@ const TransferToSaving = (props: TransferProps) => {
             if (amountOfTransfer.value === "") {
                 setTransfer(0);
             } else {
-                setTransfer(parseInt(amountOfTransfer.value));
+                setTransfer(parseInt(amountOfTransfer.value, 10));
         }
     }
+    //     const newTransfer = {
+    //         amount: amountOfTransfer.value,
+    //     // setTransferList([...transferList, newTransfer])
+    //     // setTransfer([...transfer, newTransfer])
+    //     setTransfer(transfer: NumericLiteral)
+    // }
+
+    useEffect(() => {
+        let totalTransfer: number = 0
+        for(let item of transferList) {
+            totalTransfer= Number(item)
+        }
+        props.totalTransferAmount(totalTransfer)
+      }, [transferList]);
   return (
-    <div>
-        <form onSubmit={printData}>
-            <div>
-                <label htmlFor="setTarget">Transfer to Savings</label> <br></br>
-                <input
+        <div>
+            <form onSubmit={printData}>
+                <div>
+                    <label htmlFor="setTarget">Transfer to Savings</label> <br></br>
+                    <input
                     type="number"
                     name="amountOfTransfer"
                     id="amountOfTransfer"
                     {...amountOfTransfer}
                 />
-                <button type="submit">Transfer</button>
-            </div>
+                    <button type="submit">Transfer</button>
+                </div>
             <p>Current Savings: {transfer}EUR</p>
-        
-        </form>
+            </form>
         </div>
   )
 }
+
 
 export default TransferToSaving

@@ -26,7 +26,7 @@ function App() {
   }
 
   const [totalTransfer, setTotalTransfer] = useState(0)
-  const getTotalTransfer = (transfer: number) => {
+  const totalTransferAmount = (transfer: number) => {
     setTotalTransfer(transfer)
   }
 
@@ -35,8 +35,8 @@ function App() {
       <Income getTotalIncome={getTotalIncome}/>
       <Expenses getTotalExpense={getTotalExpense}/>
       <SetTargetAmount getTotalTarget={getTotalTarget}/>
-      <TransferToSaving getTotalTransfer={getTotalTransfer}/>
-      <div className='currentBalance'><CurrentBalance totalIncome={totalIncome} totalExpense={totalExpense}/></div>
+      <TransferToSaving totalTransferAmount={totalTransferAmount}/>
+      <div className='currentBalance'><CurrentBalance totalIncome={totalIncome} totalExpense={totalExpense} totalTransfer= {totalTransfer} /></div>
     </div>
   );
 }
