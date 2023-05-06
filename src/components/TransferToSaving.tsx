@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import { NumericLiteral } from 'typescript'
 
 interface TransferProps {
     totalTransferAmount: (transfer: number) => void
@@ -17,7 +16,7 @@ const useInput = () => {
 }
 
 const TransferToSaving = (props: TransferProps) => {
-    const [transferList, setTransferList] = useState([]);
+    // const [transferList, setTransferList] = useState([]);
     const [transfer, setTransfer] = useState(0);
         const amountOfTransfer = useInput()
         const printData = (e: React.FormEvent) => {
@@ -25,7 +24,7 @@ const TransferToSaving = (props: TransferProps) => {
             if (amountOfTransfer.value === "") {
                 setTransfer(0);
             } else {
-                setTransfer(parseInt(amountOfTransfer.value, 10));
+                setTransfer(parseInt(amountOfTransfer.value));
         }
     }
     //     const newTransfer = {
@@ -36,12 +35,8 @@ const TransferToSaving = (props: TransferProps) => {
     // }
 
     useEffect(() => {
-        let totalTransfer: number = 0
-        for(let item of transferList) {
-            totalTransfer= Number(item)
-        }
-        props.totalTransferAmount(totalTransfer)
-      }, [transferList]);
+        props.totalTransferAmount(transfer)
+      }, [transfer]);
   return (
         <div>
             <form onSubmit={printData}>
