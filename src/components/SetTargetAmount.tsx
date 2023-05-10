@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
 
-// type TargetData = {
-//     amount: string;
-//   }
-
   interface TargetProps {
     getTotalTarget: (target: number) => void
 }

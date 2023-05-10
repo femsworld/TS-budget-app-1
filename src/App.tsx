@@ -11,21 +11,23 @@ import TransferToSaving from './components/TransferToSaving';
 function App() {
 
   const [totalIncome, setTotalIncome] = useState(0)
+  const [totalExpense, setTotalExpense] = useState(0)
+  const [totalTarget, setTotalTarget] = useState(0)
+  const [totalTransfer, setTotalTransfer] = useState(0)
+
   const getTotalIncome = (income: number) => {
     setTotalIncome(income)
   }
 
-  const [totalExpense, setTotalExpense] = useState(0)
   const getTotalExpense = (expense: number) => {
     setTotalExpense(expense)
   }
 
-  const [totalTarget, setTotalTarget] = useState(0)
   const getTotalTarget = (target: number) => {
     setTotalTarget(target)
   }
 
-  const [totalTransfer, setTotalTransfer] = useState(0)
+  
   const totalTransferAmount = (transfer: number) => {
     setTotalTransfer(transfer)
   }
@@ -37,6 +39,7 @@ function App() {
       <SetTargetAmount getTotalTarget={getTotalTarget}/>
       <TransferToSaving totalTransferAmount={totalTransferAmount}/>
       <div className='currentBalance'><CurrentBalance totalIncome={totalIncome} totalExpense={totalExpense} totalTransfer= {totalTransfer} /></div>
+      <div>Progress:</div>
     </div>
   );
 }
