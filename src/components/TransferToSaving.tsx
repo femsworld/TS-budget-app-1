@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
 interface TransferProps {
-    totalTransferAmount: (transfer: number) => void
+    getTotalTransferAmount: (transfer: number) => void
 }
 
 const useInput = () => {
@@ -35,7 +35,7 @@ const TransferToSaving = (props: TransferProps) => {
     // }
 
     useEffect(() => {
-        props.totalTransferAmount(transfer)
+        props.getTotalTransferAmount(transfer)
       }, [transfer]);
   return (
         <div>
@@ -50,11 +50,10 @@ const TransferToSaving = (props: TransferProps) => {
                 />
                     <button type="submit">Transfer</button>
                 </div>
-            <p>Current Savings: {transfer}EUR</p>
+            {/* <p>Current Savings: {transfer}EUR</p> */}
             </form>
         </div>
   )
 }
-
 
 export default TransferToSaving

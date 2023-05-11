@@ -7,6 +7,7 @@ import Expenses from './components/Expenses';
 import CurrentBalance from './components/CurrentBalance';
 import SetTargetAmount from './components/SetTargetAmount';
 import TransferToSaving from './components/TransferToSaving';
+import { Console } from 'console';
 
 function App() {
 
@@ -28,7 +29,7 @@ function App() {
   }
 
   
-  const totalTransferAmount = (transfer: number) => {
+  const getTotalTransferAmount = (transfer: number) => {
     setTotalTransfer(transfer)
   }
 
@@ -36,10 +37,10 @@ function App() {
     <div className="App">
       <Income getTotalIncome={getTotalIncome}/>
       <Expenses getTotalExpense={getTotalExpense}/>
-      <SetTargetAmount getTotalTarget={getTotalTarget}/>
-      <TransferToSaving totalTransferAmount={totalTransferAmount}/>
+      <SetTargetAmount getTotalTarget={getTotalTarget} totalTransfer={totalTransfer}/>
+      <TransferToSaving getTotalTransferAmount={getTotalTransferAmount}/>
       <div className='currentBalance'><CurrentBalance totalIncome={totalIncome} totalExpense={totalExpense} totalTransfer= {totalTransfer} /></div>
-      <div>Progress:</div>
+      {/* <div>Progress:</div> */}
     </div>
   );
 }
